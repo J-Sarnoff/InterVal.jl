@@ -23,10 +23,10 @@ immutable Interval{B<:BoundingDescriptor, T<:Real} <: Real
 end
 
 #=
-aClCl = Interval{ClCl,Float64}(1.0,2.0)
-aOpCl = Interval{OpCl,Float64}(1.0,2.0)
-aClOp = Interval{ClOp,Float64}(1.0,2.0)
-aOpOp = Interval{OpOp,Float64}(1.0,2.0)
+aClCl = Interval{ClCl,Float64}(1.0,2.0); aClCl == ClCl(1.0,2.0)
+aOpCl = Interval{OpCl,Float64}(1.0,2.0); aOpCl == ClCl(1.0,2.0)
+aClOp = Interval{ClOp,Float64}(1.0,2.0); aClOp == ClCl(1.0,2.0)
+aOpOp = Interval{OpOp,Float64}(1.0,2.0); aOpOp == ClCl(1.0,2.0)
 =#
 
 for B in (:Self, :ClCl, :ClOp, :OpCl, :OpOp)
