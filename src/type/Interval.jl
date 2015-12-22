@@ -22,6 +22,9 @@ immutable Interval{B<:BoundingDescriptor, T<:Real} <: Real
     hi::T
 end
 
+lowerbound{B<:BoundingDescriptor, T<:Real}(x::Interval{B,T}) = x.lo
+upperbound{B<:BoundingDescriptor, T<:Real}(x::Interval{B,T}) = x.hi
+
 #=
 aClCl = Interval{ClCl,Float64}(1.0,2.0); aClCl == ClCl(1.0,2.0)
 aOpCl = Interval{OpCl,Float64}(1.0,2.0); aOpCl == ClCl(1.0,2.0)
