@@ -2,14 +2,14 @@ module ErrorFree
 
 import Base:fma
 
-export eftRecip, eftSquare, eftCube, 
+export eftRecip, eftSquare, eftCube,
        eftSqrt,  eftRecipSqrt, # see comment for eftSqrt
-       eftSum2,  eftSum2inOrder, eftDiff2, eftDiff2inOrder, 
+       eftSum2,  eftSum2inOrder, eftDiff2, eftDiff2inOrder,
        eftProd2, eftDiv2,
        eftSum3,  eftSum3as2, eftSum3inOrder, eftSum3inOrderAs2,
        eftProd3, eftProd3as2,
        eftFMA,   eftFMS
-       
+
 
 @inline function eftSquare(a::Float64)
     x = a * a
@@ -42,8 +42,8 @@ end
      t = fma(x,-x,a)
      y = t / (x*2.0)
      x,y
-end     
-     
+end
+
 @inline function eftRecipSqrt(a::Float64)
      r = 1.0/a
      x = sqrt(r)
@@ -53,6 +53,10 @@ end
 end
 
 
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊕b and x⊕y≖x
+"""
 @inline function eftSum2{T<:Float64}(a::T, b::T)
   x = a + b
   t = x - a
@@ -60,7 +64,11 @@ end
   x,y
 end
 
-
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊕b and x⊕y≖x\\
+ *presumes* |a| ≥ |b|
+"""
 @inline function eftSum2inOrder{T<:Float64}(a::T, b::T)
   x = a + b
   y = b - (x - a)
@@ -68,6 +76,10 @@ end
 end
 
 
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊝b and x⊕y≖x
+"""
 @inline function eftDiff2{T<:Float64}(a::T, b::T)
   x = a - b
   t = x - a
@@ -75,7 +87,11 @@ end
   x,y
 end
 
-
+"""
+ (a,b) ↦ (x,y)\\
+x⊕y ≖ a⊝b and x⊕y≖x\\
+*presumes* |a| ≥ |b|
+"""
 @inline function eftDiff2inOrder{T<:Float64}(a::T, b::T)
   x = a - b
   y = (a - x) - b

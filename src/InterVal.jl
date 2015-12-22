@@ -6,7 +6,10 @@ import Base: convert, promote_type, show, showcompact,
     (==),(!=),(<),(<=),(>=),(>), isless, isequal,
     (+),(-),(*),(/)
 
-export Interval
+export ClCl, ClOp, OpCl, OpOp,
+       lowerbound, upperbound
+
+
 
 
 end # module
