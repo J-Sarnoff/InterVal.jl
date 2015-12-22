@@ -23,12 +23,22 @@ immutable Interval{B<:BoundingDescriptor, T<:Real} <: Real
 end
 
 #=
-aSelf = Interval{Self,Float64}(1.0,2.0)
 aClCl = Interval{ClCl,Float64}(1.0,2.0)
 aOpCl = Interval{OpCl,Float64}(1.0,2.0)
 aClOp = Interval{ClOp,Float64}(1.0,2.0)
 aOpOp = Interval{OpOp,Float64}(1.0,2.0)
 =#
 
+for B in (:Self, :ClCl, :ClOp, :OpCl, :OpOp)
+  @eval begin
+     function ($B){T<:Real}(lo::T, hi::T)
+        lo, hi = minmax(lo, hi)
+        Interval{$B,T}(lo,hi)
+     end
+     function ($B){T<:Real}(x::T)
+        Interval{$B,T}(x,x)
+     end
+  end
+end
 
 
