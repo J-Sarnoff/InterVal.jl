@@ -10,13 +10,13 @@
 const PairedBoundaryTypes = [ ClCl, ClOp, OpCl, OpOp ]
 
 """ obtains a pair of boundary bools from a paired boundary type """
-@inline boundings(::Type{ClCl}) = (false, false)
-@inline boundings(::Type{ClOp}) = (false, true )
-@inline boundings(::Type{OpCl}) = (true,  false)
-@inline boundings(::Type{OpOp}) = (true,  true )
+@inline boundaries(::Type{ClCl}) = (false, false)
+@inline boundaries(::Type{ClOp}) = (false, true )
+@inline boundaries(::Type{OpCl}) = (true,  false)
+@inline boundaries(::Type{OpOp}) = (true,  true )
 
 """ obtains a paired boundary type from a pair of boundary bools """
-boundings{B<:Bool}(lo::B,hi::B) =
+boundaries{B<:Bool}(lo::B,hi::B) =
    PairedBoundaryTypes[ one(Int8)+reinterpret(Int8,lo)+(reinterpret(Int8,hi)<<1) ]
 
 """ obtains a paired boundary type, the unary negation of a paired boundary type"""
