@@ -16,7 +16,7 @@ end
 
 
 (-){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (-)(a, Rvl{G,R}(b))
-(-){G<:Grasp,R<:Real}(a::F, b::Rvl{G,R}) = (-)(Rvl{G,R}(a), b)
+(-){G<:Grasp,R<:Real}(a::R, b::Rvl{G,R}) = (-)(Rvl{G,R}(a), b)
 
 (-){G<:Grasp,F<:WorkInt}(a::Rvl{G,Float64}, b::F) = (-)(a, Rvl{G,Float64}(convert(Float64,b)))
 (-){G<:Grasp,F<:WorkInt}(a::F, b::Rvl{G,Float64}) = (-)(Rvl{G,Float64}(convert(Float64,a)), b)
