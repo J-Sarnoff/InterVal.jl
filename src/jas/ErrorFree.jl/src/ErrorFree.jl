@@ -11,6 +11,8 @@ export eftRecip, eftSquare, eftCube,
        eftFMA,   eftFMS
 
 
+#>   one operand error free transformations
+
 @inline function eftSquare(a::Float64)
     x = a * a
     y = fma(a, a, -x)
@@ -24,8 +26,6 @@ function eftCube(a::Float64)
     x,y
 end
 
-# sassafrass! 'y' must be negated
-#
 @inline function eftRecip(a::Float64)
      x = one(Float64)/a
      y = -(fma(x,a,-1.0)/a)
@@ -52,6 +52,8 @@ end
      x,y
 end
 
+
+#>   two operand error free transformations
 
 """
  (a,b) ↦ (x,y)\\
@@ -104,13 +106,13 @@ end
     x,y
 end
 
-# sassafrass!  'y' must be negated
-#
 @inline function eftDiv2{T<:Float64}(a::T,b::T)
      x = a/b
      y = -(fma(x,b,-a)/b)
      x,y
 end
+
+#>   three operand error free transformations
 
 function eftSum3{T<:Float64}(a::T,b::T,c::T)
     s,t = eftSum2(b, c)
