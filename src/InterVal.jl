@@ -20,6 +20,7 @@ include("jas/RoundFast.jl/src/RoundFast.jl")
 using .RoundFast
 
 include("type/interval.jl")
+include("type/easily.jl")
 include("type/bounding.jl")
 
 include("number/compares.jl")
