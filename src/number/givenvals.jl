@@ -7,9 +7,3 @@ zero{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)(zero(R), zero(R))
  NaN{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)((R)(NaN), (R)(NaN))
 
 
-
-
-# predicates
-
-iszero{G<:Grasp, R<:Real}(a::Rvl{G,R}) = (a == zero(G,R))
-

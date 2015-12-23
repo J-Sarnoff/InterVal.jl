@@ -19,5 +19,20 @@ using .Adjacent
 include("jas/RoundFast.jl/src/RoundFast.jl")
 using .RoundFast
 
+include("type/interval.jl")
+include("type/bounding.jl")
+
+include("number/compares.jl")
+include("number/givenvals.jl")
+include("number/predicates.jl")
+
+include("arith/add.jl")
+include("arith/sub.jl")
+include("arith/mul.jl")
+include("arith/div.jl")
+
+
+
+
 
 end # module
