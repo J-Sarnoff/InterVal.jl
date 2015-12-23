@@ -1,15 +1,15 @@
 #  type-based valuations
 
-zero{B<:Reach, R<:Real}(::Type{B},::Type{R}) = (B)(zero(R), zero(R))
- one{B<:Reach, R<:Real}(::Type{B},::Type{R}) = (B)( one(R),  one(R))
+zero{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)(zero(R), zero(R))
+ one{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)( one(R),  one(R))
 
- Inf{B<:Reach, R<:Real}(::Type{B},::Type{R}) = ((R)(Inf), (R)(Inf))
- NaN{B<:Reach, R<:Real}(::Type{B},::Type{R}) = ((R)(NaN), (R)(NaN))
+ Inf{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)((R)(Inf), (R)(Inf))
+ NaN{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)((R)(NaN), (R)(NaN))
 
 
 
 
 # predicates
 
-iszero{B<:Reach, R<:Real}(a::Interval{B,R}) = (a == zero(B,R))
+iszero{G<:Grasp, R<:Real}(a::Interval{G,R}) = (a == zero(G,R))
 

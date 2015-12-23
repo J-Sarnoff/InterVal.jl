@@ -7,25 +7,25 @@ Intervals have two boundaries, each one has *value* and *reach*
 abstract AbstractInterval    <: Real
 abstract Boundary               <: AbstractInterval
 abstract BoundingValue             <: Boundary       # reserved, not used
-abstract BoundingDescriptor        <: Boundary
+abstract Grasp                     <: Boundary       # configuration of bounding extrema
+                                                     # e.g. ClOp for lobound Closed, hibound Open)
 
-type Self  <: BoundingDescriptor end
+type Self  <: Grasp end
 
-type ClCl  <: BoundingDescriptor end
-type ClOp  <: BoundingDescriptor end
-type OpCl  <: BoundingDescriptor end
-type OpOp  <: BoundingDescriptor end
-
-typealias Reach BoundingDescriptor
+type ClCl  <: Grasp end
+type ClOp  <: Grasp end
+type OpCl  <: Grasp end
+type OpOp  <: Grasp end
 
 
-immutable Interval{B<:Reach, T<:Real} <: Real
-    lo::T
-    hi::T
+
+immutable Interval{G<:Grasp, R<:Real} <: Real
+    lo::R
+    hi::R
 end
 
-lowerbound{B<:Reach, T<:Real}(x::Interval{B,T}) = x.lo
-upperbound{B<:Reach, T<:Real}(x::Interval{B,T}) = x.hi
+lowerbound{G<:Grasp, R<:Real}(x::Interval{G,R}) = x.lo
+upperbound{G<:Grasp, R<:Real}(x::Interval{G,R}) = x.hi
 
 #=
 aClCl = Interval{ClCl,Float64}(1.0,2.0); aClCl == ClCl(1.0,2.0)
@@ -36,12 +36,12 @@ aOpOp = Interval{OpOp,Float64}(1.0,2.0); aOpOp == ClCl(1.0,2.0)
 
 for B in (:Self, :ClCl, :ClOp, :OpCl, :OpOp)
   @eval begin
-     function ($B){T<:Real}(lo::T, hi::T)
+     function ($B){R<:Real}(lo::R, hi::R)
         lo, hi = minmax(lo, hi)
-        Interval{$B,T}(lo,hi)
+        Interval{$B,R}(lo,hi)
      end
-     function ($B){T<:Real}(x::T)
-        Interval{$B,T}(x,x)
+     function ($B){R<:Real}(x::R)
+        Interval{$B,R}(x,x)
      end
   end
 end
