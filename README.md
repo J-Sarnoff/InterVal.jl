@@ -1,2 +1,2 @@
 ## InterVal.jl
-#### An _intra_value prescreening
+<center> An _intra_value prescreening </center>
