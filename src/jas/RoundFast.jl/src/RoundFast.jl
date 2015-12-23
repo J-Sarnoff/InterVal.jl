@@ -3,7 +3,7 @@ module RoundFast
 import Base:(+),(-),(*),(/),sqrt
 export square
 
-include("../../../module/Adjacent.jl/src/Adjacent.jl")
+include("Adjacent.jl")
 using .Adjacent
 
 include("eftArith.jl")
