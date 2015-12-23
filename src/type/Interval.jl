@@ -16,14 +16,16 @@ type ClOp  <: BoundingDescriptor end
 type OpCl  <: BoundingDescriptor end
 type OpOp  <: BoundingDescriptor end
 
+typealias Reach BoundingDescriptor
 
-immutable Interval{B<:BoundingDescriptor, T<:Real} <: Real
+
+immutable Interval{B<:Reach, T<:Real} <: Real
     lo::T
     hi::T
 end
 
-lowerbound{B<:BoundingDescriptor, T<:Real}(x::Interval{B,T}) = x.lo
-upperbound{B<:BoundingDescriptor, T<:Real}(x::Interval{B,T}) = x.hi
+lowerbound{B<:Reach, T<:Real}(x::Interval{B,T}) = x.lo
+upperbound{B<:Reach, T<:Real}(x::Interval{B,T}) = x.hi
 
 #=
 aClCl = Interval{ClCl,Float64}(1.0,2.0); aClCl == ClCl(1.0,2.0)
