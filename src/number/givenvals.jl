@@ -9,5 +9,7 @@ NaN{B<:BoundingDescriptor, R<:Real}(::Type{B},::Type{R}) = ((R)(NaN), (R)(NaN))
 
 
 
+# predicates
 
+iszero{B<:BoundingDescriptor, R<:Real}(a::Interval{B,R}) = a == zero(B,R)
 
