@@ -11,5 +11,5 @@ zero{G<:Grasp, R<:Real}(::Type{G},::Type{R}) = (G)(zero(R), zero(R))
 
 # predicates
 
-iszero{G<:Grasp, R<:Real}(a::Interval{G,R}) = (a == zero(G,R))
+iszero{G<:Grasp, R<:Real}(a::Rvl{G,R}) = (a == zero(G,R))
 
