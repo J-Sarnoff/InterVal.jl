@@ -3,10 +3,10 @@
 end
 
 function (-){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-    aLoIsOpen, aHiIsOpen = boundries(G)
-    bLoIsOpen, bHiIsOpen = boundries(W)
+    aLoIsOpen, aHiIsOpen = boundaries(G)
+    bLoIsOpen, bHiIsOpen = boundaries(W)
 
-    cType = boundries( (aLoIsOpen|bHiIsOpen), (aHiIsOpen|bLoIsOpen) )
+    cType = boundaries( (aLoIsOpen|bHiIsOpen), (aHiIsOpen|bLoIsOpen) )
 
     lo = (-)(a.lo, b.hi, RoundDown)
     hi = (-)(a.hi, b.lo, RoundUp)

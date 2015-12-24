@@ -1,8 +1,8 @@
 function (+){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-    aLoIsOpen, aHiIsOpen = boundries(G)
-    bLoIsOpen, bHiIsOpen = boundries(W)
+    aLoIsOpen, aHiIsOpen = boundaries(G)
+    bLoIsOpen, bHiIsOpen = boundaries(W)
 
-    cType = boundries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
+    cType = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
     lo = (+)(a.lo, b.lo, RoundDown)
     hi = (+)(a.hi, b.hi, RoundUp)

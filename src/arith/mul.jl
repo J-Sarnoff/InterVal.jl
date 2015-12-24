@@ -46,9 +46,9 @@ for (fn,loa,lob,hia,hib) in [ (:mulLteLte, :(a.hi), :(b.hi), :(a.lo), :(b.lo)),
                             ]
   @eval begin
     function ($fn){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-        aLoIsOpen, aHiIsOpen = boundries(T)
-        bLoIsOpen, bHiIsOpen = boundries(W)
-        cType = boundries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
+        aLoIsOpen, aHiIsOpen = boundaries(T)
+        bLoIsOpen, bHiIsOpen = boundaries(W)
+        cType = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
         lo = (*)(($loa), ($lob), RoundDown)
         hi = (*)(($hia), ($hib), RoundUp)
