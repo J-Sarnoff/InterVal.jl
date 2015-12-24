@@ -58,7 +58,13 @@ for (fn,loa,lob,hia,hib) in [ (:mulLteLte, :(a.hi), :(b.hi), :(a.lo), :(b.lo)),
   end
 end
 
-(*){G<:Grasp,R<:Real}(a::Bool, b::Rvl{G,R}) = (*)(Rvl{G,R}(convert(R,a)), b)
+
+(*){G<:Grasp,F<:AbstractFloat}(a::Rvl{G,F}, b::F) = (*)(a, Rvl{G,F}(b))
+(*){G<:Grasp,F<:AbstractFloat}(a::F, b::Rvl{G,F}) = (*)(Rvl{G,F}(a), b)
+
+(*){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (*)(a, Rvl{G,R}(b))
+# ambiguity with Bool
+#(*){G<:Grasp,R<:Real}(a::R, b::Rvl{G,R}) = (*)(Rvl{G,R}(a), b)
 
 (*){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (*)(a, Rvl{G,R}(b))
 (*){G<:Grasp,R<:Real}(a::R, b::Rvl{G,R}) = (*)(Rvl{G,R}(a), b)
