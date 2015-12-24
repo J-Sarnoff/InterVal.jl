@@ -25,7 +25,7 @@ immutable Rvl{G<:Grasp, R<:Real} <: Real
     hi::R
 end
 
-typealias Rvl
+
 lowerbound{G<:Grasp, R<:Real}(x::Rvl{G,R}) = x.lo
 upperbound{G<:Grasp, R<:Real}(x::Rvl{G,R}) = x.hi
 
