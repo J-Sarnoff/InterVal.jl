@@ -58,6 +58,7 @@ for (fn,loa,lob,hia,hib) in [ (:mulLteLte, :(a.hi), :(b.hi), :(a.lo), :(b.lo)),
   end
 end
 
+(*){G<:Grasp,R<:Real}(a::Bool, b::Rvl{G,R}) = (*)(Rvl{G,R}(convert(R,a)), b)
 
 (*){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (*)(a, Rvl{G,R}(b))
 (*){G<:Grasp,R<:Real}(a::R, b::Rvl{G,R}) = (*)(Rvl{G,R}(a), b)
