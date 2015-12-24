@@ -7,7 +7,7 @@
         true   ⇋  an Open   bound            OpOp   ⇋  (true , true)
 =#
 
-const PairedBoundaryTypes = [ ClCl, ClOp, OpCl, OpOp ]
+const PairedBoundaryTypes = [ ClCl, OpCl, ClOp, OpOp ]
 
 """ obtains a pair of boundary bools from a paired boundary type """
 @inline boundaries(::Type{ClCl}) = (false, false)
