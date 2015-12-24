@@ -42,15 +42,15 @@ for (fn,loa,lob,hia,hib) in [ (:divLteLte, :(a.hi), :(b.lo), :(a.lo), :(b.hi)),
                               (:divZerGte, :(a.lo), :(b.lo), :(a.hi), :(b.lo)),
                             ]
   @eval begin
-    function ($fn){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-        aLoIsOpen, aHiIsOpen = boundaries(T)
-        bLoIsOpen, bHiIsOpen = boundaries(W)
-        cType = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
+    function ($fn){G1<:Grasp,G2<:Grasp,R<:Real}(a::Rvl{G1,R}, b::Rvl{G2,R})
+        aLoIsOpen, aHiIsOpen = boundaries(G1)
+        bLoIsOpen, bHiIsOpen = boundaries(G2)
+        abGrasp = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
         lo = (/)(($loa), ($lob), RoundDown)
         hi = (/)(($hia), ($hib), RoundUp)
 
-        Rvl{cType,R}(lo, hi)
+        Rvl{abGrasp,R}(lo, hi)
     end
   end
 end

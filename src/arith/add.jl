@@ -1,13 +1,13 @@
-function (+){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-    aLoIsOpen, aHiIsOpen = boundaries(G)
-    bLoIsOpen, bHiIsOpen = boundaries(W)
+function (+){G1<:Grasp,G2<:Grasp,R<:Real}(a::Rvl{G1,R}, b::Rvl{G2,R})
+    aLoIsOpen, aHiIsOpen = boundaries(G1)
+    bLoIsOpen, bHiIsOpen = boundaries(G2)
 
-    cType = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
+    abGrasp = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
     lo = (+)(a.lo, b.lo, RoundDown)
     hi = (+)(a.hi, b.hi, RoundUp)
 
-    Rvl{cType,R}(lo, hi)
+    Rvl{abGrasp,R}(lo, hi)
 end
 
 (+){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (+)(a, Rvl{G,R}(b))

@@ -2,18 +2,17 @@
    Rvl{negate(G), R}(-a.hi, -a.lo)
 end
 
-function (-){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
-    aLoIsOpen, aHiIsOpen = boundaries(G)
-    bLoIsOpen, bHiIsOpen = boundaries(W)
+function (-){G1<:Grasp,G2<:Grasp,R<:Real}(a::Rvl{G1,R}, b::Rvl{G2,R})
+    aLoIsOpen, aHiIsOpen = boundaries(G1)
+    bLoIsOpen, bHiIsOpen = boundaries(G2)
 
-    cType = boundaries( (aLoIsOpen|bHiIsOpen), (aHiIsOpen|bLoIsOpen) )
+    abGrasp = boundaries( (aLoIsOpen|bHiIsOpen), (aHiIsOpen|bLoIsOpen) )
 
     lo = (-)(a.lo, b.hi, RoundDown)
     hi = (-)(a.hi, b.lo, RoundUp)
 
-    Rvl{cType,R}(lo, hi)
+    Rvl{abGrasp,R}(lo, hi)
 end
-
 
 (-){G<:Grasp,R<:Real}(a::Rvl{G,R}, b::R) = (-)(a, Rvl{G,R}(b))
 (-){G<:Grasp,R<:Real}(a::R, b::Rvl{G,R}) = (-)(Rvl{G,R}(a), b)
