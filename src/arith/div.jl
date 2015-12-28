@@ -84,6 +84,4 @@ end
 function divisorStraddlesZero{G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
     ErrorException("Divisor straddles zero: $(a) / $(b)")
 end
-    
-       
-end
+
