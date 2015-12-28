@@ -22,13 +22,13 @@ const Delimiters =  [ ( "⟨" , "⟩" ) , ( "⟨" , "⦒" ) ,  ( "⦑" , "⟩" )
 
 function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
-
+    Gstr = split(string(G),".")[2]
     s = if (x.lo != x.hi)
-            string(G,"(", x.lo, tiestr, x.hi, ")")
+            string(Gstr,"(", x.lo, tiestr, x.hi, ")")
         elseif G==ClCl
             string(x.lo)
         else
-            string(G,"(", x.lo, ")")
+            string(Gst,"(", x.lo, ")")
         end    
     print(io, s)
 end
