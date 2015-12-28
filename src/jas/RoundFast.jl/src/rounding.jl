@@ -34,9 +34,10 @@ for op in (:(+), :(-), :(*), :(/))
 end
 
 if isdefined(Main,:FloatFloat)
+FF=Main.FloatFloat.FF
 for op in (:(+), :(-), :(*), :(/))
     @eval begin
-        function ($op){T<:FloatFloat.FF, R<:RoundingMode}(a::T, b::T, rounding::R)
+        function ($op){T<:FF, R<:RoundingMode}(a::T, b::T, rounding::R)
             c = zero(T)
             with_rounding(Float64,R) do
                 c = a + b
