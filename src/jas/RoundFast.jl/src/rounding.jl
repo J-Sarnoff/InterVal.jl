@@ -31,7 +31,16 @@ end
 
 
 for op in (:(+), :(-), :(*), :(/))
-    @eval ($op){T<:Integer, R<:RoundingMode}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
+    @eval begin
+        ($op){T<:Integer, R<:RoundingMode}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
+        function ($op){T<:FF, R<:RoundingMode}(a::T, b::T, rounding::R)
+            c = zero(T)
+            with_rounding(Float64,R) do
+                c = a + b
+            end
+            c
+        end
+    end   
 end
 
 function (+){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
