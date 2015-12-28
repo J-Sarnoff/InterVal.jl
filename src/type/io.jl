@@ -19,17 +19,21 @@ const Delimiters =  [ ( "⟨" , "⟩" ) , ( "⟨" , "⦒" ) ,  ( "⦑" , "⟩" )
 @inline delimiters(loIsOpen::Bool, hiIsOpen::Bool) =
       Delimiters[ one(Int8)+(reinterpret(Int8,loIsOpen)<<1)+hiIsOpen ]
 
+Base.string(::Type{ClCl}) = "ClCl"
+Base.string(::Type{ClOp}) = "ClOp"
+Base.string(::Type{OpCl}) = "OpCl"
+Base.string(::Type{OpOp}) = "OpOp"
 
 function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
-    Gstr = split(string(G),".")[2]
+    Gstr = string(G)
     s = if (x.lo != x.hi)
             string(Gstr,"(", x.lo, tiestr, x.hi, ")")
         elseif G==ClCl
             string(x.lo)
         else
             string(Gstr,"(", x.lo, ")")
-        end    
+        end
     print(io, s)
 end
 
@@ -43,14 +47,14 @@ function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
             string(x.lo)
         else
             string(loDelim, x.lo, hiDelim)
-        end    
+        end
     print(io, s)
 end
 =#
 
 function showcompact{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
-    Gstr = split(string(G),".")[2]
+    Gstr = string(G)
     lo = @sprintf("%7.5g", x.lo); lo = strip(lo)
     hi = @sprintf("%7.5g", x.hi); hi = strip(hi)
     s = if (x.lo != x.hi)
@@ -59,7 +63,7 @@ function showcompact{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
             string(x.lo)
         else
             string(Gstr,"(", lo, ")")
-        end    
+        end
     print(io, s)
 end
 
