@@ -68,7 +68,7 @@ function divisorContainsZero{G1<:Grasp,G2<:Grasp,R<:Real}(a::Rvl{G1,R}, b::Rvl{G
     bLoIsOpen, bHiIsOpen = boundaries(G2)
     abGrasp = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
-    if (b.lo < zero(R) & b.hi > zero(R))
+    if (b.lo < zero(R)) & (b.hi > zero(R))
        return divisorStraddlesZero(a,b)
     end   
     if b.lo == zero(R)
