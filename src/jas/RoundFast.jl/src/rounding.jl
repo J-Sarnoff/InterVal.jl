@@ -31,7 +31,7 @@ end
 
 
 for op in (:(+), :(-), :(*), :(/))
-    @eval ($op)({T<:Integer, R<:RoundingMod}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
+    @eval ($op){T<:Integer, R<:RoundingMode}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
 end
 
 function (+){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
