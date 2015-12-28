@@ -8,6 +8,7 @@ import Base: convert, promote_type, show, showcompact,
     (+),(-),(*),(/),sqrt
 
 export ClCl, ClOp, OpCl, OpOp,
+       ClCl!, ClOp!, OpCl!, OpOp!,
        lowerbound, upperbound
 
 
