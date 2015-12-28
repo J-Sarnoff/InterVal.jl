@@ -20,4 +20,7 @@ ClOp{R<:Real}(x::Rvl{OpOp,R}) = Rvl{ClOp,R}(x.lo,x.hi)
 OpCl{R<:Real}(x::Rvl{OpOp,R}) = Rvl{OpCl,R}(x.lo,x.hi)
 OpOp{R<:Real}(x::Rvl{OpOp,R}) = x
 
-
+ClCl!{G<:Grasp,R<:Real}(x::Rvl{G,R}) = ClCl(x.lo,x.hi)
+ClOp!{G<:Grasp,R<:Real}(x::Rvl{G,R}) = ClOp(x.lo,x.hi)
+OpCl!{G<:Grasp,R<:Real}(x::Rvl{G,R}) = OpCl(x.lo,x.hi)
+OpOp!{G<:Grasp,R<:Real}(x::Rvl{G,R}) = OpOp(x.lo,x.hi)
