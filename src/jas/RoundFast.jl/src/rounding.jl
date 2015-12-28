@@ -28,3 +28,53 @@ function (sqrt){T<:AbstractFloat, R<:RoundingMode}(a::T, rounding::R)
     hi,lo = eftSqrtApprox(a)
     eftRound(hi, lo, rounding)
 end
+
+
+
+function (+){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = a + b
+    end
+    c
+end
+
+function (-){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = a - b
+    end
+    c
+end
+
+function (*){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = a * b
+    end
+    c
+end
+
+function (/){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = a / b
+    end
+    c
+end
+
+function (square){T<:Real, R<:RoundingMode}(a::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = a*a
+    end
+    c
+end
+
+function (sqrt){T<:Real, R<:RoundingMode}(a::T, rounding::R)
+    c = zero(T)
+    with_rounding(T,R) do
+        c = sqrt(a)
+    end
+    c
+end
