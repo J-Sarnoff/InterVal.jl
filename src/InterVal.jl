@@ -22,6 +22,7 @@ using .RoundFast
 include("type/interval.jl")
 include("type/easily.jl")
 include("type/bounding.jl")
+include("type/io.jl")
 
 include("number/compares.jl")
 include("number/givenvals.jl")
