@@ -39,7 +39,7 @@ for op in (:(+), :(-), :(*), :(/))
     @eval begin
         function ($op){T<:FF, R<:RoundingMode}(a::T, b::T, rounding::R)
             c = zero(T)
-            with_rounding(Float64,R) do
+            with_rounding(Float64,rounding) do
                 c = a + b
             end
             c
