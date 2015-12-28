@@ -28,7 +28,7 @@ function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
         elseif G==ClCl
             string(x.lo)
         else
-            string(Gst,"(", x.lo, ")")
+            string(Gstr,"(", x.lo, ")")
         end    
     print(io, s)
 end
@@ -50,10 +50,16 @@ end
 
 function showcompact{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
-    loDelim,hiDelim = delimiters(boundries(G)...)
+    Gstr = split(string(G),".")[2]
     lo = @sprintf("%7.5g", x.lo); lo = strip(lo)
     hi = @sprintf("%7.5g", x.hi); hi = strip(hi)
-    s = (x.lo != x.hi) ? string(loDelim, lo, tiestr, hi, hiDelim) : string(lo)
+    s = if (x.lo != x.hi)
+            string(Gstr,"(", lo, tiestr, hi, ")")
+        elseif G==ClCl
+            string(x.lo)
+        else
+            string(Gstr,"(", lo, ")")
+        end    
     print(io, s)
 end
 
