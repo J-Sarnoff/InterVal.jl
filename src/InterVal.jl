@@ -5,8 +5,7 @@ import Base: convert, promote_type, show, showcompact,
     issubnormal, isfinite, isreal, isinf, isnan,
     zero, one, Inf, NaN,
     (==),(!=),(<),(<=),(>=),(>), isless, isequal,
-    (+),(-),(*),(/), sqrt
-
+    (+),(-),(*),(/)
 export ClCl, ClOp, OpCl, OpOp,
        lowerbound, upperbound
 
