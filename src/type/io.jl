@@ -20,7 +20,20 @@ const Delimiters =  [ ( "⟨" , "⟩" ) , ( "⟨" , "⦒" ) ,  ( "⦑" , "⟩" )
       Delimiters[ one(Int8)+(reinterpret(Int8,loIsOpen)<<1)+hiIsOpen ]
 
 
+function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
+    tiestr = ", "
 
+    s = if (x.lo != x.hi)
+            string(G,"(", x.lo, tiestr, x.hi, ")")
+        elseif G==ClCl
+            string(x.lo)
+        else
+            string(G,"(", x.lo, ")")
+        end    
+    print(io, s)
+end
+
+#=
 function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
     loDelim,hiDelim = delimiters(boundaries(G)...)
@@ -33,6 +46,7 @@ function show{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
         end    
     print(io, s)
 end
+=#
 
 function showcompact{G<:Grasp,R<:Real}(io::IO, x::Rvl{G,R})
     tiestr = ", "
