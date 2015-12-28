@@ -6,7 +6,7 @@
        a >=  0    GteLte      GteZer    GteGte
 =#
 
-function (*){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
+function (*){G1<:Grasp,G2<:Grasp,R<:Real}(a::Rvl{G1,R}, b::Rvl{G2,R})
     z = zero(R)
     if     a.hi <= z
        if     b.hi <= z
