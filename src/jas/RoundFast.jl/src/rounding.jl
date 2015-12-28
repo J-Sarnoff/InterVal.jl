@@ -29,20 +29,23 @@ function (sqrt){T<:AbstractFloat, R<:RoundingMode}(a::T, rounding::R)
     eftRound(hi, lo, rounding)
 end
 
+for op in (:(+), :(-), :(*), :(/))
+    @eval ($op){T<:Integer, R<:RoundingMode}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
+end
 
+if isdefined(Main,:FloatFloat)
 for op in (:(+), :(-), :(*), :(/))
     @eval begin
-        ($op){T<:Integer, R<:RoundingMode}(a::Rational{T}, b::Rational{T}, rounding::R) = ($op)(a,b)
-        function ($op){T<:FF, R<:RoundingMode}(a::T, b::T, rounding::R)
+        function ($op){T<:FloatFloat.FF, R<:RoundingMode}(a::T, b::T, rounding::R)
             c = zero(T)
             with_rounding(Float64,R) do
                 c = a + b
             end
             c
         end
-    end   
+    end
 end
-
+end
 function (+){T<:Real, R<:RoundingMode}(a::T, b::T, rounding::R)
     c = zero(T)
     with_rounding(T,R) do
