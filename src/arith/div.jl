@@ -8,7 +8,6 @@
        a >=  0    GteLte       GteGte
 =#
 
-
 function (/){G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
     z = zero(R)
     if (b.lo == z) | (b.hi == z) | ((b.lo < z) & (b.hi > z))
@@ -64,4 +63,27 @@ end
 (/){G<:Grasp,I<:WorkInt}(a::Rvl{G,Float32}, b::I) = (/)(a, Rvl{G,Float32}(convert(Float32,b)))
 (/){G<:Grasp,I<:WorkInt}(a::I, b::Rvl{G,Float32}) = (/)(Rvl{G,Float32}(convert(Float32,a)), b)
 
+function divisorContainsZero{G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
+    aLoIsOpen, aHiIsOpen = boundaries(G1)
+    bLoIsOpen, bHiIsOpen = boundaries(G2)
+    abGrasp = boundaries( (aLoIsOpen|bLoIsOpen), (aHiIsOpen|bHiIsOpen) )
 
+    if (b.lo < zero(R) & b.hi > zero(R))
+       return divisorStraddlesZero(a,b)
+    end   
+    if b.lo == zero(R)
+       lo = one(R) / b.hi
+       hi = (R)(Inf)
+    else b.hi == zero(R)
+       lo = (R)(-Inf)
+       hi = one(R) / b.lo
+    end
+    Rvl{abGrasp,R}(lo, hi)
+end
+
+function divisorStraddlesZero{G<:Grasp,W<:Grasp,R<:Real}(a::Rvl{G,R}, b::Rvl{W,R})
+    ErrorException("Divisor straddles zero: $(a) / $(b)")
+end
+    
+       
+end
